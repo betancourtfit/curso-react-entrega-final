@@ -1,12 +1,13 @@
-import Item from "../Item/Item"
+import ItemCard from "../ItemCard/ItemCard";
 
-const ItemList = ({productos}) => {
-  return (
-    <div className='contenedorProductos'>
-        {productos.map(prod =>
-            <Item key={prod.id} {...prod}/>)}
-    </div>
-  )
-}
+const ItemList = ({ productos }) => {
+    return (
+        <div className="contenedorProductos container-fluid d-flex justify-content-around">
+            {productos.map((prod) => (
+                <ItemCard key={prod.id} {...prod} />
+            ))}
+        </div>
+    );
+};
 
-export default ItemList
+export default ItemList;

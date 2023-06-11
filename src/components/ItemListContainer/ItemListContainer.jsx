@@ -12,7 +12,7 @@ const ItemListContainer = () => {
     return (
         <div>
             <h2>Productos TaDa</h2>
-            <ItemList productos= {productos}/>
+            <ItemList productos= {productos} className="containe-fluid" />
         </div>
     )
 }

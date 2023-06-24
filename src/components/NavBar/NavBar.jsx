@@ -3,19 +3,30 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import CartWidget from "../CartWidget/CartWidget";
+import { Link,NavLink } from "react-router-dom";
 
 const NavBar = () => {
     return (
         <div>
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand href="#home">TaDa Delivery</Navbar.Brand>
+                    <Link to="/"> 
+                        <Navbar.Brand> 
+                        TaDa Delivery 
+                        </Navbar.Brand>
+                    </Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#home">Cervezas</Nav.Link>
-                            <Nav.Link href="#home">Destilados</Nav.Link>
-                            <Nav.Link href="#home">Gaseosas</Nav.Link>
+                        <Nav.Link>
+                            <NavLink to={`/categoria/1`}>
+                            Cervezas
+                            </NavLink> 
+                        </Nav.Link>
+                        <Nav.Link>
+                            <NavLink to={`/categoria/2`}>Destilados</NavLink>
+                        </Nav.Link>
+                            <NavLink to={"/Gaseosas"}><Nav.Link>Gaseosas</Nav.Link></NavLink>
                             <NavDropdown
                                 title="Mi Perfil"
                                 id="basic-nav-dropdown"

@@ -2,8 +2,8 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import NavBar from './components/NavBar/NavBar';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import JSONplace from './components/JSONplace';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 <link
   rel="stylesheet"
@@ -16,9 +16,16 @@ function App() {
 
   return (
     <>
-      <NavBar/>
-      <ItemDetailContainer />
-      <ItemListContainer />
+      <BrowserRouter> 
+        <NavBar/>
+          <Routes>
+            <Route path="/" element = {<ItemListContainer/>}/>
+            <Route path="/categoria/:idCategoria" element={<ItemListContainer/>}/>
+            <Route path="/item/:idItem" element={<ItemDetailContainer/>}/>
+          </Routes>
+      </BrowserRouter>
+       {/* <ItemDetailContainer />
+      <ItemListContainer />  */}
     </>
   )
 }

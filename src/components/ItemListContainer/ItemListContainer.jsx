@@ -1,17 +1,25 @@
-import { useState, useEffect} from 'react'
-import ItemList from '../ItemList/ItemList'
-import { getProductos } from '../../productImport'
+import { useState, useEffect} from 'react';
+import ItemList from '../ItemList/ItemList';
+import { useParams } from 'react-router-dom';
+import { getProductos, getProductosPorCategoria } from '../../productImport'
 
 const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
 
+    const {idCategoria} = useParams();
+
+
     useEffect( () => {
-        getProductos()
-            .then(respuesta => setProductos(respuesta))
-    },[])
+        const funcionProductos = idCategoria ? getProductosPorCategoria : getProductos;
+        
+        funcionProductos(idCategoria)
+            .then(res => setProductos(res))
+            .catch(error => console.log(error))
+        /*getProductos()
+            .then(respuesta => setProductos(respuesta))*/
+    },[idCategoria])
     return (
         <div>
-            <h2>Productos TaDa</h2>
             <ItemList productos= {productos} className="containe-fluid" />
         </div>
     )

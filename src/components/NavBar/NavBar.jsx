@@ -26,7 +26,9 @@ const NavBar = () => {
                         <Nav.Link>
                             <NavLink to={`/categoria/2`}>Destilados</NavLink>
                         </Nav.Link>
-                            <NavLink to={"/Gaseosas"}><Nav.Link>Gaseosas</Nav.Link></NavLink>
+                        <Nav.Link>
+                            <NavLink to={`/categoria/3`}>Gaseosas</NavLink>
+                        </Nav.Link>
                             <NavDropdown
                                 title="Mi Perfil"
                                 id="basic-nav-dropdown"

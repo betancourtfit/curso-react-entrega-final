@@ -4,6 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './components/Home/Home';
 
 <link
   rel="stylesheet"
@@ -19,13 +20,12 @@ function App() {
       <BrowserRouter> 
         <NavBar/>
           <Routes>
-            <Route path="/" element = {<ItemListContainer/>}/>
+            <Route path="/curso-react-entrega-2" element = {<Home/>}/>
             <Route path="/categoria/:idCategoria" element={<ItemListContainer/>}/>
             <Route path="/item/:idItem" element={<ItemDetailContainer/>}/>
+            <Route path="*" element={<h2>Seccion en construccion</h2>}/>
           </Routes>
       </BrowserRouter>
-       {/* <ItemDetailContainer />
-      <ItemListContainer />  */}
     </>
   )
 }

@@ -2,7 +2,7 @@
   "name": "entrega-2-betancourt",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://betancourtfit.github.io/curso-react-entrega-2",
+  "homepage": "https://betancourtfit.github.io",
   "type": "module",
   "scripts": {
     "dev": "vite",

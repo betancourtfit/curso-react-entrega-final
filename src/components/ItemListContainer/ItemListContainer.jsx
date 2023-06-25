@@ -19,8 +19,8 @@ const ItemListContainer = () => {
             .then(respuesta => setProductos(respuesta))*/
     },[idCategoria])
     return (
-        <div>
-            <ItemList productos= {productos} className="containe-fluid" />
+        <div className = "mx-5">
+            <ItemList productos= {productos} className="container-fluid d-flex" />
         </div>
     )
 }

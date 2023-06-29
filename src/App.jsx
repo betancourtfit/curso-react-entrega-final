@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
-
+import { CarritoProvider } from './context/CarritoContext';
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -18,16 +18,19 @@ function App() {
   return (
     <>
       <BrowserRouter> 
-        <NavBar/>
-          <Routes>
-            <Route path="/curso-react-entrega-2" element = {<Home/>}/>
-            <Route path="/categoria/:idCategoria" element={<ItemListContainer/>}/>
-            <Route path="/item/:idItem" element={<ItemDetailContainer/>}/>
-            <Route path="*" element={<h2>Seccion en construccion</h2>}/>
-          </Routes>
+        <CarritoProvider>
+          <NavBar/>
+            <Routes>
+              <Route path="/" element = {<Home/>}/>
+              <Route path="/categoria/:idCategoria" element={<ItemListContainer/>}/>
+              <Route path="/item/:idItem" element={<ItemDetailContainer/>}/>
+              <Route path='/cart' element={<h2>Dentro de muy poquito vas a ver tus productos acá</h2>} />
+              <Route path="*" element={<h2>Seccion en construccion</h2>}/>
+            </Routes>
+        </CarritoProvider>
       </BrowserRouter>
     </>
   )
 }
 
-export default App
+export default App;

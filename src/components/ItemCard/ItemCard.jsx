@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import "./ItemCard.css"
+//import ItemCount from '../ItemCount/ItemCount';
 
 // eslint-disable-next-line react/prop-types
 const ItemCard = ({id,nombre,precio,img}) => {

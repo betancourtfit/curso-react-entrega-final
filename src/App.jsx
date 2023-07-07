@@ -21,7 +21,7 @@ function App() {
         <CarritoProvider>
           <NavBar/>
             <Routes>
-              <Route path="/" element = {<Home/>}/>
+              <Route path="/curso-react-entrega-final/" element = {<Home/>}/>
               <Route path="/categoria/:idCategoria" element={<ItemListContainer/>}/>
               <Route path="/item/:idItem" element={<ItemDetailContainer/>}/>
               <Route path='/cart' element={<h2>Dentro de muy poquito vas a ver tus productos acá</h2>} />

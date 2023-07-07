@@ -23,8 +23,10 @@ const ItemDetail = ({ id, nombre, precio, img, stock }) => {
             <Card.Body >
                 <Card.Title>{nombre}</Card.Title>
                 <Card.Text>{precio}</Card.Text>
+                <ItemCount inicial={0} stock={stock} funcionAgregar={manejadorCantidad}/>
             {
-                agregarCantidad > 0 ? (<Link to="/cart"> <Button variant="warning"> Terminar Compra</Button></Link>) : (<ItemCount inicial={1} stock={stock} funcionAgregar={manejadorCantidad}/>)
+                
+                agregarCantidad > 0 ? (<Link to="/cart"> <Button variant="warning"> Terminar Compra</Button></Link>) : <></>
             }
 
             </Card.Body>

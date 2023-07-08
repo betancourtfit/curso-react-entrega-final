@@ -4,6 +4,8 @@ import { db } from "../../services/config.js"
 
 const Productos = () => {
     const [productos, setProductos] = useState([]);
+    console.log("usestate producto");
+    console.log(productos);
 
     useEffect( () => {
         //const misProductos = query(collection(db,"products"));
@@ -12,6 +14,7 @@ const Productos = () => {
             .then(res => {
                 setProductos(res.docs.map((doc) => ({id: doc.id, ...doc.data()})))
             })
+            .catch(console.log(Error))
     },[productos])
 
     const descontarStock = async(producto) => {

@@ -7,7 +7,6 @@ const Home = () => {
         <div>
             <h2> HOME IMPORTADA</h2>
             <Productos/>
-            <Formulario/>
             <h2> Home con todos mis productos</h2>
             <ItemListContainer/>
         </div>

@@ -6,6 +6,8 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
 import { CarritoProvider } from './context/CarritoContext';
+import Formulario from './components/Formulario/Formulario';
+
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -24,7 +26,8 @@ function App() {
               <Route path="/curso-react-entrega-final/" element = {<Home/>}/>
               <Route path="/categoria/:idCategoria" element={<ItemListContainer/>}/>
               <Route path="/item/:idItem" element={<ItemDetailContainer/>}/>
-              <Route path='/cart' element={<h2>Dentro de muy poquito vas a ver tus productos acá</h2>} />
+              <Route path='cart' element={<h2>Dentro de muy poquito vas a ver tus productos acá</h2>} />
+              <Route path="/curso-react-entrega-final/admin" element={<Formulario/>}/>
               <Route path="*" element={<h2>Seccion en construccion</h2>}/>
             </Routes>
         </CarritoProvider>

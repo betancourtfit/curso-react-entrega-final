@@ -27,7 +27,8 @@ const Productos = () => {
                 {
                     productos.map( producto => (
                         <div className='product-card'>
-                            <h3>nombre: ${producto.nombre}</h3>
+                            <img src={producto.img}></img>
+                            <h3>nombre: {producto.nombre}</h3>
                             <p> {producto.precio}</p>
                             <p> {producto.stock}</p>
                             <button onClick={descontarStock}> Comprar</button>

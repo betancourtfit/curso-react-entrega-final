@@ -10,7 +10,7 @@ const NavBar = () => {
         <div>
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Link to="/"> 
+                    <Link to="/curso-react-entrega-final/"> 
                         <Navbar.Brand> 
                         TaDa Delivery 
                         </Navbar.Brand>

@@ -2,9 +2,8 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import ItemCount from "../ItemCount/ItemCount";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { CarritoContext } from "../../context/CarritoContext";
-import { useContext } from "react";
 
 const ItemDetail = ({ id, nombre, precio, img, stock }) => {
     const [agregarCantidad, setAgregarCantidad] = useState(0);

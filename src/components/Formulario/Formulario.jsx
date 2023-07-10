@@ -8,6 +8,9 @@ const Formulario = () => {
     const [nombre, setNombre] = useState("");
     const [documentoId, setDocumentoId] = useState(); 
     const [precio, setPrecio] = useState();
+    const [idCat, setIdCat] = useState();
+    const [stock, setStock] = useState();
+    const [img, setImg] = useState();
 
     const manejadorFormulario = (e) => {
         e.preventDefault();
@@ -21,7 +24,12 @@ const Formulario = () => {
 
         addDoc(collection(db,"products"),{
             id: documentoId,
-            nombre: nombre
+            nombre: nombre,
+            precio: precio,
+            idCat: idCat,
+            stock: stock,
+            img: img
+
         })
     }
     return (
@@ -35,6 +43,12 @@ const Formulario = () => {
                 <input type="number" value={documentoId} onChange={(e)=> setDocumentoId(e.target.value) } />
                 <label htmlFor=""> precio</label>
                 <input type="number" value={precio} onChange={(e)=> setPrecio(e.target.value) } />
+                <label htmlFor=""> idCat</label>
+                <input type="number" value={idCat} onChange={(e)=> setIdCat(e.target.value) } />
+                <label htmlFor=""> stock</label>
+                <input type="number" value={stock} onChange={(e)=> setStock(e.target.value) } />
+                <label htmlFor=""> IMAGEN</label>
+                <input type="text" value={img} onChange={(e)=> setImg(e.target.value) } />
                 <button type="submit"> enviar</button>
             </form>
         

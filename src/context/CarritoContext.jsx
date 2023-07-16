@@ -39,8 +39,15 @@ export const CarritoProvider = ({children}) => {
         const productoEliminado = carrito.find(prod => prod.item.id === id);
         const carritoActualizado = carrito.filter( prod => prod.item.id !== id);
         setCarrito(carritoActualizado);
+        console.log("Carrito Actualizado:")
+        console.log(carritoActualizado)
+        console.log(carrito)
         setCantidadTotal(prev => prev - productoEliminado.cantidad);
-        setTotal(prev => prev - (productoEliminado.item.precio * productoEliminado.item.cantidad));
+        console.log("Cantidad actualizada:")
+        console.log(cantidadTotal)
+        setTotal(prev => prev - (productoEliminado.item.precio * productoEliminado.cantidad));
+        console.log("Total actualizado:")
+        console.log(total)
     }
 
     const vaciarCarrito = () => {

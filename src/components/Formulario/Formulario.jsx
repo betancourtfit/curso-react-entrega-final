@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { db } from "../../services/config";
-import { addDoc, collection } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
-import React from 'react'
 
 const Formulario = () => {
     const [nombre, setNombre] = useState("");
@@ -21,32 +20,48 @@ const Formulario = () => {
         // }
 
         //const res = db.collection("products").doc(documentoId).set(data);
-
-        addDoc(collection(db,"products"),{
+        setDoc(doc(db,"products",documentoId),{
             id: documentoId,
             nombre: nombre,
             precio: precio,
             idCat: idCat,
             stock: stock,
             img: img
-
         })
+        // addDoc(collection(db,"products"),{
+        //     id: documentoId,
+        //     nombre: nombre,
+        //     precio: precio,
+        //     idCat: idCat,
+        //     stock: stock,
+        //     img: img
+
+        // })
     }
     return (
         <>
             <form onSubmit={manejadorFormulario}>
                 <h2> Formulario</h2>
-
-                <label htmlFor=""> Nombre</label>
-                <input type="text" value={nombre} onChange={(e)=> setNombre(e.target.value) } />
-                <label htmlFor=""> ID</label>
-                <input type="number" value={documentoId} onChange={(e)=> setDocumentoId(e.target.value) } />
-                <label htmlFor=""> precio</label>
-                <input type="number" value={precio} onChange={(e)=> setPrecio(e.target.value) } />
+                <div> 
+                    <label htmlFor=""> Nombre</label>
+                    <input type="text" value={nombre} onChange={(e)=> setNombre(e.target.value) } />
+                </div>
+                <div>
+                    <label htmlFor=""> ID</label>
+                    <input type="number" value={documentoId} onChange={(e)=> setDocumentoId(e.target.value) } />
+                </div>
+                <div> 
+                    <label htmlFor=""> precio</label>
+                    <input type="number" value={precio} onChange={(e)=> setPrecio(e.target.value) } />
+                </div>
+                <div>
                 <label htmlFor=""> idCat</label>
                 <input type="number" value={idCat} onChange={(e)=> setIdCat(e.target.value) } />
+                </div>
+                <div>
                 <label htmlFor=""> stock</label>
                 <input type="number" value={stock} onChange={(e)=> setStock(e.target.value) } />
+                </div>
                 <label htmlFor=""> IMAGEN</label>
                 <input type="text" value={img} onChange={(e)=> setImg(e.target.value) } />
                 <button type="submit"> enviar</button>

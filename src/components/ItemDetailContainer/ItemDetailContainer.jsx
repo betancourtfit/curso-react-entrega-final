@@ -1,26 +1,45 @@
 import { useEffect, useState } from 'react'
-import { getUnProducto } from '../../productImport';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
+import { getDoc, doc} from 'firebase/firestore';
+import { db } from '../../services/config';
 
 const ItemDetailContainer = () => {
     const [producto, setProducto] = useState(null);
-
+    let [noExiste, setNoExiste] = useState(false)
     const {idItem} = useParams();
 
     useEffect(() => {
-        getUnProducto(idItem)
-            .then(res => setProducto(res))
-            .catch(error => console.log(error))
-    },[idItem])
+        noExiste = false;
+        const nuevoDoc = doc(db, "products", idItem);
+        getDoc(nuevoDoc)
+            .then(res => {
+                if(res.exists()){
+                const data = res.data();
+                const nuevoProducto = {id:res.id, ...data};
+                setProducto(nuevoProducto);
+                } else { 
+                    setNoExiste(true)
+                }
+            })
+            .catch(error => console.log(error));
+    
+        },[idItem]);
+    if(!noExiste){
     return (
-        <div >
-            <h2 className='text-center'>getUnProducto</h2> <br></br>
-            <div className='d-flex justify-content-center'>
-            {producto?.id &&<ItemDetail key={producto.id} {...producto} />}
+            <div >
+                <div className='d-flex justify-content-center'>
+                {producto?.id &&<ItemDetail key={producto.id} {...producto} />}
+                </div>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return (
+            <>
+                <h2>PRODUCTO NO DISPONIBLE</h2>
+            </>
+        )
+    }
 }
 
 export default ItemDetailContainer

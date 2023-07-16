@@ -6,8 +6,9 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
 import { CarritoProvider } from './context/CarritoContext';
-import { ProductoProvider } from './context/ProductoContext';
 import Formulario from './components/Formulario/Formulario';
+import Cart from './components/Cart/Cart';
+import Checkout from './components/Checkout/Checkout';
 
 <link
   rel="stylesheet"
@@ -21,19 +22,18 @@ function App() {
   return (
     <>
       <BrowserRouter> 
-        <ProductoProvider>
-          <CarritoProvider>
-            <NavBar/>
-              <Routes>
-                <Route path="/curso-react-entrega-final/" element = {<Home/>}/>
-                <Route path="/categoria/:idCategoria" element={<ItemListContainer/>}/>
-                <Route path="/item/:idItem" element={<ItemDetailContainer/>}/>
-                <Route path='cart' element={<h2>Dentro de muy poquito vas a ver tus productos acá</h2>} />
-                <Route path="/curso-react-entrega-final/admin" element={<Formulario/>}/>
-                <Route path="*" element={<h2>Seccion en construccion</h2>}/>
-              </Routes>
-          </CarritoProvider>
-        </ProductoProvider>
+        <CarritoProvider>
+          <NavBar/>
+            <Routes>
+              <Route path="/curso-react-entrega-final/" element = {<Home/>}/>
+              <Route path="/categoria/:idCategoria" element={<ItemListContainer/>}/>
+              <Route path="/item/:idItem" element={<ItemDetailContainer/>}/>
+              <Route path='cart' element={<Cart/>} />
+              <Route path='/checkout' element={<Checkout/>}/>
+              <Route path="/curso-react-entrega-final/admin" element={<Formulario/>}/>
+              <Route path="*" element={<h2>Seccion en construccion</h2>}/>
+            </Routes>
+        </CarritoProvider>
       </BrowserRouter>
     </>
   )

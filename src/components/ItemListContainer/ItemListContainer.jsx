@@ -1,22 +1,29 @@
 import { useState, useEffect} from 'react';
 import ItemList from '../ItemList/ItemList';
 import { useParams } from 'react-router-dom';
-import { getProductos, getProductosPorCategoria } from '../../productImport'
+import { getDocs, collection, query  , where } from 'firebase/firestore';   
+import { db } from "../../services/config.js"
 
 const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
 
     const {idCategoria} = useParams();
 
+    const getProductos = () => query(collection(db,"products"));
+
+    const getProductosPorCategoria = () => query(collection(db,"products"), where("idCat","==",idCategoria));
 
     useEffect( () => {
-        const funcionProductos = idCategoria ? getProductosPorCategoria : getProductos;
+
+        const misProductos = idCategoria ? getProductosPorCategoria() : getProductos();
+
+        getDocs(misProductos)
+            .then(res => {
+                setProductos(res.docs.map((doc) => ({id: doc.id, ...doc.data()})))
+            })
+            .catch((error) => console.log("el error es", error))
         
-        funcionProductos(idCategoria)
-            .then(res => setProductos(res))
-            .catch(error => console.log(error))
-        /*getProductos()
-            .then(respuesta => setProductos(respuesta))*/
+
     },[idCategoria])
     return (
         <div className = "mx-5">

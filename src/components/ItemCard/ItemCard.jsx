@@ -18,16 +18,6 @@ const ItemCard = ({id,nombre,precio,img,stock}) => {
 
     const {agregarProducto} = useContext(CarritoContext);
 
-    // const aumentarContador = () => {
-    //     if(contador < 5){
-    //         setContador(contador + 1)
-    //     }
-    // }
-
-    // const disminuirContador = () => {
-    //     if(contador > 0) {
-    //         setContador(contador -1)
-    //     }
 
     const manejadorCantidad = (cantidad) => {
         setAgregarCantidad(cantidad);
@@ -36,16 +26,6 @@ const ItemCard = ({id,nombre,precio,img,stock}) => {
         agregarProducto(item, cantidad);
     }
 
-    // useEffect(() => {
-    //     const idProducto = document.getElementById(id).id;
-    // setCarrito([
-    //   ...carrito,
-    //   {
-    //     id: idProducto,
-    //     cantidad: contador
-    //   }
-    // ])},[contador]
-     
 
     // )
     return (

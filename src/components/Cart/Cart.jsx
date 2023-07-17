@@ -25,7 +25,7 @@ const Cart = () => {
                 </Card>
 
             ))}
-            <Link to="/curso-react-entrega-final/"> Ver más productos</Link>
+            <Link to="/"> Ver más productos</Link>
             <br></br>
             <Card.Link onClick={() => vaciarCarrito()}>Vaciar Carrito</Card.Link>
             <h3> Total a pagar: ${total}</h3>

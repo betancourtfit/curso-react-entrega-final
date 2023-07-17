@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react';
+import {useContext} from 'react';
 import { CarritoContext } from '../../context/CarritoContext';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
@@ -9,7 +9,7 @@ const Cart = () => {
         return (    
             <>
                 <h1> Tu carrito está vacío </h1>
-                <Link to="/curso-react-entrega-final/"> Ver productos</Link>
+                <Link to="/"> Ver productos</Link>
             </>
         )
     } else {

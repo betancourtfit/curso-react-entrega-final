@@ -2,6 +2,11 @@ import {useState, useContext} from 'react';
 import { CarritoContext } from '../../context/CarritoContext';
 import { db } from '../../services/config';
 import { addDoc, doc, getDoc, updateDoc, collection } from 'firebase/firestore';
+//IMPORTACION DE BOOTSTRAP REACT
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 
 const Checkout = () => {
@@ -13,10 +18,18 @@ const Checkout = () => {
     const [emailConfirmacion, setEmailConfirmacion] = useState("");
     const [error, setError] = useState("");
     const [orderId, setOrderId] = useState("");
+    const [validated, setValidated] = useState(false);
+    const [formularioEnviado, setFormularioEnviado] = useState(false);
 
-
-    const manejadorFormulario = (e) => { 
-        e.preventDefault(); 
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    
+        setValidated(true);
+        event.preventDefault();
         setError("")
 
         if(!nombre || !apellido || !telefono || !email || !emailConfirmacion) {
@@ -45,7 +58,6 @@ const Checkout = () => {
             email
             }
         };
-
         console.log("enviado con exito")
         Promise.all(
             order.items.map(async (prod) => {
@@ -63,6 +75,7 @@ const Checkout = () => {
                     .then((docRef) => {
                         setOrderId(docRef.id);
                         vaciarCarrito();
+                        setFormularioEnviado(true);
                     })
                     .catch((error) => {
                         console.log("Error al crear orden",error);
@@ -73,41 +86,74 @@ const Checkout = () => {
                 console.log("Error al actualizar stock", error);
                 setError("Error al actualizar el stock")
             })
+        }
 
-
-
-    }
 
     return (
         <>
             <h2>Checkout</h2>
-            <form onSubmit={manejadorFormulario}>
-                <div className='form-group'>
-                    <label htmlFor='nombre'> Nombre </label>
-                    <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value) } />
-                </div>
-
-                <div className='form-group'>
-                    <label htmlFor='nombre'> Apellido </label>
-                    <input type="text" value={apellido} onChange={(e) => setApellido(e.target.value) } />
-                </div>
-
-                <div className='form-group'>
-                    <label htmlFor='telefono'> Telefono </label>
-                    <input type="text" value={telefono} onChange={(e) => setTelefono(e.target.value) } />
-                </div>
-
-                <div className='form-group'>
-                    <label htmlFor='email'> Email </label>
-                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value) } />
-                </div>
-
-                <div className='form-group'>
-                    <label htmlFor='confirmacionEmail'> Confirma tu mail </label>
-                    <input type="text" value={emailConfirmacion} onChange={(e) => setEmailConfirmacion(e.target.value) } />
-                </div>
-                <button type="submit"> Finalizar Compra </button>
-            </form>
+            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                <Row className="mb-3">
+                    <Form.Group as={Col} md="3" controlId="validationCustom01">
+                    <Form.Label>Nombre </Form.Label>
+                    <Form.Control
+                        required
+                        type="text"
+                        placeholder="Nombre"
+                        defaultValue="Juan"
+                        value={nombre} 
+                        onChange={(e) => setNombre(e.target.value)}
+                        disabled={formularioEnviado}
+                    />
+                    <Form.Control.Feedback>¡Perfecto!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="3" controlId="validationCustom02">
+                    <Form.Label>Apellido</Form.Label>
+                    <Form.Control
+                        required
+                        type="text"
+                        placeholder="Apellido"
+                        defaultValue="Betancourt"
+                        value={apellido} 
+                        onChange={(e) => setApellido(e.target.value) }
+                        disabled={formularioEnviado}
+                    />
+                    <Form.Control.Feedback>¡Perfecto!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="3" controlId="validationCustom03">
+                    <Form.Label>Telefono</Form.Label>
+                    <Form.Control type="text" placeholder="Telefono" required value={telefono} onChange={(e) => setTelefono(e.target.value) } disabled={formularioEnviado}/>
+                    <Form.Control.Feedback type="invalid">
+                        Por favor ingrese su número de teléfono
+                    </Form.Control.Feedback>
+                    </Form.Group>
+                </Row>
+                <Row className="mb-3">
+                    <Form.Group as={Col} md="3" controlId="validationCustom04">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="text" placeholder="Email" required value={email} onChange={(e) => setEmail(e.target.value) } disabled={formularioEnviado} />
+                    <Form.Control.Feedback type="invalid">
+                        Porfavor ingrese un mail válido
+                    </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="3" controlId="validationCustom05">
+                    <Form.Label>Confirmacion Email</Form.Label>
+                    <Form.Control type="text" placeholder="Confirmacion Email" required value={emailConfirmacion} onChange={(e) => setEmailConfirmacion(e.target.value) } disabled={formularioEnviado}/>
+                    <Form.Control.Feedback type="invalid">
+                        Porfavor ingrese un mail válido
+                    </Form.Control.Feedback>
+                    </Form.Group>
+                </Row>
+                <Form.Group className="mb-3">
+                    <Form.Check
+                    required
+                    label="Acepte los terminos y condiciones"
+                    feedback="debe aceptar los terminos y condiciones"
+                    feedbackType="invalid"
+                    />
+                </Form.Group>
+                <Button type="submit" disabled={formularioEnviado}>Submit form</Button>
+                </Form>
 
             {
                 error && <p style={{ color: "red" }}> {error} </p>
@@ -118,17 +164,6 @@ const Checkout = () => {
                     <strong>¡Gracias por tu compra! Tu número de orden es {orderId} </strong>
                 )
             }
-            {/* <div>
-                {carrito.map(prod => (
-                    <div key={prod.item.id}>
-                        <p>
-                            {prod.item.nombre} x {prod.cantidad}
-                        </p>
-                    </div>
-                ))
-
-                }
-            </div> */}
         </>
     )
 }

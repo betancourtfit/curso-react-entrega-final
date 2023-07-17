@@ -2,7 +2,7 @@
   "name": "entrega-final-betancourt",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://betancourtfit.github.io/curso-react-entrega-final/",
+  "homepage": "https://betancourtfit.github.io/",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -14,12 +14,6 @@ const Formulario = () => {
     const manejadorFormulario = (e) => {
         e.preventDefault();
 
-        // const data = {
-        //     nombre: nombre,
-        //     precio: precio
-        // }
-
-        //const res = db.collection("products").doc(documentoId).set(data);
         setDoc(doc(db,"products",documentoId),{
             id: documentoId,
             nombre: nombre,
@@ -28,15 +22,7 @@ const Formulario = () => {
             stock: stock,
             img: img
         })
-        // addDoc(collection(db,"products"),{
-        //     id: documentoId,
-        //     nombre: nombre,
-        //     precio: precio,
-        //     idCat: idCat,
-        //     stock: stock,
-        //     img: img
 
-        // })
     }
     return (
         <>

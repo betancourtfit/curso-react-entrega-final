@@ -6,11 +6,11 @@ import { db } from '../../services/config';
 
 const ItemDetailContainer = () => {
     const [producto, setProducto] = useState(null);
-    let [noExiste, setNoExiste] = useState(false)
+    const [noExiste, setNoExiste] = useState(false)
     const {idItem} = useParams();
 
     useEffect(() => {
-        noExiste = false;
+        setNoExiste(false);
         const nuevoDoc = doc(db, "products", idItem);
         getDoc(nuevoDoc)
             .then(res => {

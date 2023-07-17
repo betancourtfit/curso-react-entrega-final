@@ -25,12 +25,12 @@ function App() {
         <CarritoProvider>
           <NavBar/>
             <Routes>
-              <Route path="/curso-react-entrega-final/" element = {<Home/>}/>
+              <Route path="/" element = {<Home/>}/>
               <Route path="/categoria/:idCategoria" element={<ItemListContainer/>}/>
               <Route path="/item/:idItem" element={<ItemDetailContainer/>}/>
-              <Route path='cart' element={<Cart/>} />
+              <Route path='/cart' element={<Cart/>} />
               <Route path='/checkout' element={<Checkout/>}/>
-              <Route path="/curso-react-entrega-final/admin" element={<Formulario/>}/>
+              <Route path="/admin" element={<Formulario/>}/>
               <Route path="*" element={<h2>Seccion en construccion</h2>}/>
             </Routes>
         </CarritoProvider>

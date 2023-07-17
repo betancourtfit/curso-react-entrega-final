@@ -5,6 +5,7 @@ import ItemCount from "../ItemCount/ItemCount";
 import { useState, useContext } from "react";
 import { CarritoContext } from "../../context/CarritoContext";
 
+// eslint-disable-next-line react/prop-types
 const ItemDetail = ({ id, nombre, precio, img, stock, descripcion }) => {
     const [agregarCantidad, setAgregarCantidad] = useState(0);
 
@@ -23,6 +24,7 @@ const ItemDetail = ({ id, nombre, precio, img, stock, descripcion }) => {
                 <Card.Title>{nombre}</Card.Title>
                 <Card.Text>{precio}</Card.Text>
                 <Card.Text>{descripcion}</Card.Text>
+                <Card.Text>Stock:{stock}</Card.Text>
                 <ItemCount inicial={0} stock={stock} funcionAgregar={manejadorCantidad}/>
             {
                 

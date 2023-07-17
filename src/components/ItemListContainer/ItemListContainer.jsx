@@ -6,11 +6,8 @@ import { db } from "../../services/config.js"
 
 const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
-
     const {idCategoria} = useParams();
-
     const getProductos = () => query(collection(db,"products"));
-
     const getProductosPorCategoria = () => query(collection(db,"products"), where("idCat","==",idCategoria));
 
     useEffect( () => {
@@ -23,7 +20,7 @@ const ItemListContainer = () => {
             })
             .catch((error) => console.log("el error es", error))
         
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[idCategoria])
     return (
         <div className = "mx-5">
